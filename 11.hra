@@ -1,0 +1,28 @@
+#!/bin/sh
+
+while read line
+
+do
+
+echo "$line"> line.txt
+
+v=$(cut -d " " -f 3 line.txt)
+
+if [ $v -gt 60000 ]
+
+then
+
+da=`expr $v \* 30`
+da=`expr $da / 100`
+else
+
+da=`expr $v \* 25`
+da=`expr $da / 100`
+fi
+hra=`expr $v \* 10`
+hra=`expr $hra / 100`
+gsal=$(($v+$da+$hra))
+
+echo "$line $da $hra"
+
+done < emp.list
